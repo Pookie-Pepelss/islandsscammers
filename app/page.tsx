@@ -127,7 +127,7 @@ export default function Page() {
           <section className="bg-black/40 border border-red-500/10 rounded-2xl p-8">
             <h3 className="text-2xl font-semibold mb-4 text-red-400">Discord: @demdafien</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {["/dem1.png", "/dem2.png", "/dem3.png", "/dem4.png", "/universalevidence.png"].map((src, i) => (
+              {["/dem1.png", "/dem2.png", "/dem3.png", "/dem4.png", "/demacc2.png", "/demselfvouch.png", "/demselfvouchproof.png", "/moreproof.png", "/admira.png", "/universalevidence.png"].map((src, i) => (
                 <div key={i} className="relative group">
                   <img 
                     src={src} 
