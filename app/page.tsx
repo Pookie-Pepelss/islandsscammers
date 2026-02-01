@@ -85,6 +85,7 @@ export default function Page() {
                 <div key={i} className="relative group">
                   <img 
                     src={src} 
+                    alt={`Evidence ${i + 1}`}
                     className="rounded-xl border border-white/5 w-full h-48 object-cover transition-all" 
                   />
                   <button 
@@ -107,6 +108,7 @@ export default function Page() {
                 <div key={i} className="relative group">
                   <img 
                     src={src} 
+                    alt={`Warrior Evidence ${i + 1}`}
                     className="rounded-xl border border-white/5 w-full h-48 object-cover transition-all" 
                   />
                   <button 
@@ -129,6 +131,7 @@ export default function Page() {
                 <div key={i} className="relative group">
                   <img 
                     src={src} 
+                    alt={`Dem Evidence ${i + 1}`}
                     className="rounded-xl border border-white/5 w-full h-48 object-cover transition-all" 
                   />
                   <button 
@@ -156,6 +159,7 @@ export default function Page() {
           <div className="relative max-w-5xl max-h-full flex items-center justify-center" style={{ animation: "zoomIn 0.2s ease-out" }}>
             <img 
               src={expandedSrc} 
+              alt="Expanded Evidence"
               className={`max-w-full max-h-[90vh] rounded-lg shadow-2xl border border-red-500/20 ${isDragging ? '' : 'transition-transform duration-300 ease-out'} ${isZoomed ? (isDragging ? 'cursor-grabbing' : 'cursor-grab') : 'cursor-zoom-in'}`}
               style={{
                 transform: `translate(${pan.x}px, ${pan.y}px) scale(${isZoomed ? 2.5 : 1})`,
