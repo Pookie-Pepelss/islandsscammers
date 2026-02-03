@@ -1,16 +1,22 @@
 "use client";
 
-import { useState, MouseEvent, useRef } from "react";
+import { useState, MouseEvent, useRef, useEffect } from "react";
 
 export default function Page() {
-  const [active, setActive] = useState<"enthusaist" | "warrior" | "dem" | null>(null);
+  const [active, setActive] = useState<"enthusaist" | "warrior" | null>(null);
   const [expandedSrc, setExpandedSrc] = useState<string | null>(null);
   const [isZoomed, setIsZoomed] = useState(false);
   const [zoomOrigin, setZoomOrigin] = useState({ x: 50, y: 50 });
   const [pan, setPan] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const dragStart = useRef({ x: 0, y: 0 });
   const startPan = useRef({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const closeExpanded = () => {
     setExpandedSrc(null);
@@ -56,8 +62,31 @@ export default function Page() {
     }
   };
 
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <style>{`
+          @keyframes spin { to { transform: rotate(360deg); } }
+          .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255,255,255,0.1);
+            border-radius: 50%;
+            border-top-color: #ef4444;
+            animation: spin 1s ease-in-out infinite;
+          }
+        `}</style>
+        <div className="spinner"></div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-[#1a0505] to-black text-zinc-100">
+      <style>{`
+        @keyframes zoomIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+      `}</style>
 
       <main className="max-w-6xl mx-auto px-6 py-14">
         <h2 className="text-4xl font-bold mb-4">Roblox Islands Scam Documentation</h2>
@@ -66,26 +95,29 @@ export default function Page() {
         </p>
 
         <div className="flex gap-4 mb-12">
-          <button onClick={() => setActive("enthusaist")} className="px-6 py-3 rounded-xl bg-white/5 border border-white/10">
+          <button 
+            onClick={() => setActive("enthusaist")} 
+            className={`px-6 py-3 rounded-xl border transition-all duration-300 ${active === "enthusaist" ? "bg-red-600/20 border-red-500/50 text-white" : "bg-white/5 border-white/10 hover:bg-white/10 text-zinc-400"}`}
+          >
             Enthusaist
           </button>
-          <button onClick={() => setActive("warrior")} className="px-6 py-3 rounded-xl bg-white/5 border border-white/10">
+          <button 
+            onClick={() => setActive("warrior")} 
+            className={`px-6 py-3 rounded-xl border transition-all duration-300 ${active === "warrior" ? "bg-red-600/20 border-red-500/50 text-white" : "bg-white/5 border-white/10 hover:bg-white/10 text-zinc-400"}`}
+          >
             Warriorofthedark
-          </button>
-          <button onClick={() => setActive("dem")} className="px-6 py-3 rounded-xl bg-white/5 border border-white/10">
-            DemDaKing
           </button>
         </div>
 
         {active === "enthusaist" && (
-          <section className="bg-black/40 border border-red-500/10 rounded-2xl p-8">
+          <section className="bg-black/40 border border-red-500/10 rounded-2xl p-8" style={{ animation: "fadeInUp 0.4s ease-out" }}>
             <h3 className="text-2xl font-semibold mb-4 text-red-400">Discord: @anticheatdev</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {["/evidence1.png", "/evidence2.png", "/evidence3.png", "/universalevidence.png"].map((src, i) => (
+              {["/evidence1.png", "/evidence2.png", "/evidence3.png", "/evidence4.png", "/universalevidence.png"].map((src, i) => (
                 <div key={i} className="relative group">
                   <img 
                     src={src} 
-                    alt={`Evidence ${i + 1}`}
+                    alt={`Enthusaist Evidence ${i + 1}`}
                     className="rounded-xl border border-white/5 w-full h-48 object-cover transition-all" 
                   />
                   <button 
@@ -101,37 +133,14 @@ export default function Page() {
         )}
 
         {active === "warrior" && (
-          <section className="bg-black/40 border border-red-500/10 rounded-2xl p-8">
+          <section className="bg-black/40 border border-red-500/10 rounded-2xl p-8" style={{ animation: "fadeInUp 0.4s ease-out" }}>
             <h3 className="text-2xl font-semibold mb-4 text-red-400">Discord: @warriorofthedark971</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {["/evidence1warrior.png", "/evidence2warrior.png", "/evidence3warrior.png", "/evidence4warrior.png", "/evidence5warrior.png", "/evidence6warrior.png", "/universalevidence.png"].map((src, i) => (
+              {["/evidence1warrior.png", "/evidence2warrior.png", "/evidence3warrior.png", "/evidence4warrior.png", "/evidence5warrior.png", "/evidence6warrior.png", "/evidence7warrior.jpg", "/evidence8warrior.jpg", "/evidence9warrior.jpg", "/evidence10warrior.jpg", "/universalevidence.png"].map((src, i) => (
                 <div key={i} className="relative group">
                   <img 
                     src={src} 
                     alt={`Warrior Evidence ${i + 1}`}
-                    className="rounded-xl border border-white/5 w-full h-48 object-cover transition-all" 
-                  />
-                  <button 
-                    onClick={() => setExpandedSrc(src)}
-                    className="absolute inset-0 flex items-center justify-center bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"
-                  >
-                    <span className="text-sm font-medium bg-red-600/80 px-4 py-2 rounded-lg hover:bg-red-600 transition-colors">Expand</span>
-                  </button>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {active === "dem" && (
-          <section className="bg-black/40 border border-red-500/10 rounded-2xl p-8">
-            <h3 className="text-2xl font-semibold mb-4 text-red-400">Discord: @demdafien</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {["/dem1.png", "/dem2.png", "/dem3.png", "/dem4.png", "/demacc2.png", "/demselfvouch.png", "/demselfvouchproof.png", "/moreproof.png", "/admira.png", "/universalevidence.png"].map((src, i) => (
-                <div key={i} className="relative group">
-                  <img 
-                    src={src} 
-                    alt={`Dem Evidence ${i + 1}`}
                     className="rounded-xl border border-white/5 w-full h-48 object-cover transition-all" 
                   />
                   <button 
@@ -155,7 +164,6 @@ export default function Page() {
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseUp}
         >
-          <style>{`@keyframes zoomIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }`}</style>
           <div className="relative max-w-5xl max-h-full flex items-center justify-center" style={{ animation: "zoomIn 0.2s ease-out" }}>
             <img 
               src={expandedSrc} 
