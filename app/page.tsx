@@ -3,7 +3,7 @@
 import { useState, MouseEvent, useRef, useEffect } from "react";
 
 export default function Page() {
-  const [active, setActive] = useState<"enthusaist" | "warrior" | null>(null);
+  const [active, setActive] = useState<"enthusiast" | "warrior" | null>(null);
   const [expandedSrc, setExpandedSrc] = useState<string | null>(null);
   const [isZoomed, setIsZoomed] = useState(false);
   const [zoomOrigin, setZoomOrigin] = useState({ x: 50, y: 50 });
@@ -96,10 +96,10 @@ export default function Page() {
 
         <div className="flex gap-4 mb-12">
           <button 
-            onClick={() => setActive("enthusaist")} 
-            className={`px-6 py-3 rounded-xl border transition-all duration-300 ${active === "enthusaist" ? "bg-red-600/20 border-red-500/50 text-white" : "bg-white/5 border-white/10 hover:bg-white/10 text-zinc-400"}`}
+            onClick={() => setActive("enthusiast")} 
+            className={`px-6 py-3 rounded-xl border transition-all duration-300 ${active === "enthusiast" ? "bg-red-600/20 border-red-500/50 text-white" : "bg-white/5 border-white/10 hover:bg-white/10 text-zinc-400"}`}
           >
-            Enthusaist
+            Enthusiast
           </button>
           <button 
             onClick={() => setActive("warrior")} 
@@ -109,7 +109,7 @@ export default function Page() {
           </button>
         </div>
 
-        {active === "enthusaist" && (
+        {active === "enthusiast" && (
           <section className="bg-black/40 border border-red-500/10 rounded-2xl p-8" style={{ animation: "fadeInUp 0.4s ease-out" }}>
             <h3 className="text-2xl font-semibold mb-4 text-red-400">Discord: @anticheatdev</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -117,7 +117,7 @@ export default function Page() {
                 <div key={i} className="relative group">
                   <img 
                     src={src} 
-                    alt={`Enthusaist Evidence ${i + 1}`}
+                    alt={`Enthusiast Evidence ${i + 1}`}
                     className="rounded-xl border border-white/5 w-full h-48 object-cover transition-all" 
                   />
                   <button 
@@ -136,7 +136,7 @@ export default function Page() {
           <section className="bg-black/40 border border-red-500/10 rounded-2xl p-8" style={{ animation: "fadeInUp 0.4s ease-out" }}>
             <h3 className="text-2xl font-semibold mb-4 text-red-400">Discord: @warriorofthedark971</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {["/evidence1warrior.png", "/evidence2warrior.png", "/evidence3warrior.png", "/evidence4warrior.png", "/evidence5warrior.png", "/evidence6warrior.png", "/evidence7warrior.jpg", "/evidence8warrior.jpg", "/evidence9warrior.jpg", "/evidence10warrior.jpg", "/universalevidence.png"].map((src, i) => (
+              {["/evidence1warrior.png", "/evidence2warrior.png", "/evidence3warrior.png", "/evidence4warrior.png", "/evidence5warrior.png", "/evidence6warrior.png", "/evidence7warrior.jpg", "/evidence8warrior.jpg", "/evidence9warrior.jpg", "/evidence10warrior.jpg", "/evidence11warrior.jpg", "/universalevidence.png"].map((src, i) => (
                 <div key={i} className="relative group">
                   <img 
                     src={src} 
